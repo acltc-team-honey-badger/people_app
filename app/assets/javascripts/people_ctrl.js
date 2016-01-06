@@ -19,8 +19,15 @@
         name: name,
         bio: bio,
         bioVisible: false
-      }
-      $scope.people.push(newPerson);
+      };
+      $http.post('/api/v1/people.json', newPerson).then(function(response) {
+        var personCallback = response.data;
+        personCallback.bioVisible = false;
+        $scope.people.push(personCallback);
+        console.log("happy path.")
+      }, function(error) {
+        $scope.errorMessages = error.data.errors
+      });
     }
 
     $scope.deletePerson = function(index) {
@@ -32,3 +39,4 @@
   window.$scope = $scope;    
   });
 })();
+      // $scope.people.push(newPerson);

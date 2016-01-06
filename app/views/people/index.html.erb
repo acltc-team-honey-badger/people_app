@@ -2,6 +2,9 @@
   <div ng-controller="peopleCtrl" ng-init="setup()">
   <div>
     Add Person:
+    <ul>
+      <li class="error-messages" ng-repeat="errorMessage in errorMessages">{{errorMessage}}</li>
+    </ul>
     <div>
       Name: <input ng-model="newName">
     </div>
